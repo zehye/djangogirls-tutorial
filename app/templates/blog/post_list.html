@@ -10,16 +10,18 @@
 <body>
     <h1>DjangoGirls Blog</h1>
 
-    <div>
-        <p>published: 04.06.2018, 12: 14</p>
-        <h2>My First post</h2>
-        <p>Lorem autem delectus, dolores enim eum hic inventore, itaque iure laudantium pariatur praesentium quae quas rerum sit tenetur veniam veritatis voluptas voluptatem voluptatibus voluptatum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aut dolore dolorem ea nam rem, tempore totam. Architecto consectetur cupiditate distinctio iste iure libero maxime officiis praesentium, quibusdam quidem sit. ipsum dolor sit amet, consectetur adipisicing elit. Ab alias amet, dolore doloribus eligendi eos ex expedita fugiat id, laboriosam modi molestiae molestias nisi obcaecati pariatur placeat quo similique temporibus. </p>
-    </div>
+        <!--{{ posts }}-->
+    {% for post in posts %}
+        <!--{{ posts }}-->
+        <!--<h2>{{ post.title }}</h2>-->
+
 
     <div>
-        <p>published: 04.06.2018, 12: 15</p>
-        <h2>My Second post</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dicta eaque laborum omnis reiciendis sequi. Cum deleniti dicta dignissimos dolor eaque eum excepturi, explicabo harum illo impedit ipsa laboriosam minima natus perferendis placeat porro quam quidem rem rerum sed similique sunt tempore temporibus tenetur vel velit vitae. Alias aperiam assumenda cumque distinctio ea eligendi exercitationem fugiat maxime minus modi, nihil nostrum nulla officia optio perferendis placeat tempore. Architecto autem consequatur consequuntur debitis distinctio dolorem dolorum ducimus earum ex harum impedit incidunt iste, laudantium libero mollitia necessitatibus neque nesciunt nulla numquam odit officia ratione recusandae repellendus sequi tempore totam vel! A.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dicta distinctio iusto magni nesciunt possimus quibusdam sequi, suscipit. Accusamus, consequatur dolor ea placeat qui quo vel veniam voluptate? Blanditiis commodi consectetur deserunt dignissimos dolorem doloremque facere, harum id illo in magni, necessitatibus nobis quidem quis repellat veritatis voluptatem voluptates voluptatum!</p>
+        <p>published: {{ post.published_date }}</p>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text }}</p>
     </div>
+
+    {% endfor %}
 </body>
 </html>

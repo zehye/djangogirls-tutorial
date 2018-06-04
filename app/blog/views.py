@@ -70,9 +70,23 @@ def post_list(request):
     # - ~ <br>
     # - ~ 등등
     # 위 텍스트를 넣어서 리턴
-    result = '글목록 <br>'
-    for post in posts:
-        result += ' - {}<br>'.format(post)
+    # result = '글목록 <br>'
+    # for post in posts:
+    #     result += ' - {}<br>'.format(post)
+    #
+    # return HttpResponse(result)
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
 
-    return HttpResponse(result)
-
+    }
+    # render는 주어진 인수를 사용해서
+    # 여기서 1번째 인수: HttpResponse인스턴스
+    # 2번째 인수: 문자열 (TEMPLATES['DIRS']를 기준으로 탐색할 템플릿 파일의 경로
+    # 3번째 인수: 템플릿을 렌더링 할 때 사용할 객체의 모음
+    # return render(request, 'blog/post_list.html', context)
+    return render(
+        request=request,
+        template_name='blog/post_list.html',
+        context=context
+    )
