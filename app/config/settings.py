@@ -18,10 +18,16 @@ print(BASE_DIR)
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 print(TEMPLATES_DIR)
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+print(STATIC_DIR)
+
+# 정적파일을 탐색할 경로 목록
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'g!v%fct#_zdz11wr9kz8w#2a(w_5_13s*k&yhdm9rvi$cd%_v3'
 
