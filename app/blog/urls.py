@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from .views import post_list
+from .views import post_detail
 #from blog.views import post_list
 
 urlpatterns = [
@@ -8,4 +9,6 @@ urlpatterns = [
     # view function: request를 받아 response를 돌려주는 함수
     # blog.views에 있는 post_list함수를 아래 url함수의 두번째 인자로 전달 (함수호출 아님)
     url(r'^$', post_list),
+    # 정규표현식에 그룹을 지정해서 view function의 인수로 전달한다.
+    url(r'^(\d+)/', post_detail),
 ]
