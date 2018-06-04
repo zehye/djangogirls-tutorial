@@ -6,6 +6,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.template.loader import render_to_string
 
+from .models import Post
+
 
 def post_list(request):
     """
@@ -58,4 +60,19 @@ def post_list(request):
     # return HttpResponse(html)  # 특정 리퀘스트가 올떄 보통 http로 오고 여기로 응답을 보내는데 응답을 보내기 위한 무언가를 만들어줘
 
     # 위의 두 줄을 한번에 줄여쓰는 방법
-    return render(request, 'blog/post_list.html')
+    # return render(request, 'blog/post_list.html')
+
+    posts = Post.objects.all()
+    # print(posts)
+    # Post instance에서 title 속성에 접근가능
+    # HttpResponse에
+    # 글 목록 <br>
+    # - ~ <br>
+    # - ~ 등등
+    # 위 텍스트를 넣어서 리턴
+    result = '글목록 <br>'
+    for post in posts:
+        result += ' - {}<br>'.format(post)
+
+    return HttpResponse(result)
+
