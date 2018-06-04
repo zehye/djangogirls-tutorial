@@ -9,19 +9,14 @@
 </head>
 <body>
     <h1>DjangoGirls Blog</h1>
-
-        <!--{{ posts }}-->
     {% for post in posts %}
-        <!--{{ posts }}-->
-        <!--<h2>{{ post.title }}</h2>-->
-
-
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.text }}</p>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <h6 class="card-subtitle text-muted mb-3 text-right">published: {{ post.published_date }}</h6>
+            <p class="card-text">{{ post.text|truncatechars:100 }}</p>
+        </div>
     </div>
-
     {% endfor %}
 </body>
 </html>
