@@ -51,8 +51,11 @@ def post_list(request):
 
     # 경로에 해당하는 html파일을 문자열로 로드해줌
     # render_to_string : (path) -> template dir를 기준으로 가져온 특정 path값을 가져온다.
-    # 근데 이때의 pathsms setiings.py의 TEMPLATES안에 있는 path를 기준으로 해서 가져온다.
-    html = render_to_string('blog/post_list.html')
 
+    # 근데 이때의 pathsms setiings.py의 TEMPLATES안에 있는 path를 기준으로 해서 가져온다.
     # 가져온 문자열 돌려주기
-    return HttpResponse(html)  # 특정 리퀘스트가 올떄 보통 http로 오고 여기로 응답을 보내는데 응답을 보내기 위한 무언가를 만들어줘
+    # html = render_to_string('blog/post_list.html')
+    # return HttpResponse(html)  # 특정 리퀘스트가 올떄 보통 http로 오고 여기로 응답을 보내는데 응답을 보내기 위한 무언가를 만들어줘
+
+    # 위의 두 줄을 한번에 줄여쓰는 방법
+    return render(request, 'blog/post_list.html')
