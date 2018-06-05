@@ -13,8 +13,11 @@
     <div class="container">
         <!--아래 텍스트를 클릭 시 무조건 post_list view function에 해당하는 페이지로 이동-->
         <!--여기서는 받아줘야할 인수가 없으니까 단순히 url에서 이름만 정해주면 된다 -->
-        <h1 class="card mb-4"><a href="{% url 'post-list' %}">DjangoGirls Blog</a></h1>
-
+        <h1 class="mb-4"><a href="{% url 'post-list' %}">DjangoGirls Blog</a></h1>
+        <div class="text-right mb-3">
+            <!--<button class="btn btn-primary">글 쓰기</button>-->
+            <a class="btn btn-primary" href="{% url 'post-create' %}">글 쓰기</a>
+        </div>
         {% block content %}
         {% endblock %}
     </div>

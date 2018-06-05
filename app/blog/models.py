@@ -19,7 +19,7 @@ class Post(models.Model):
     def publish(self):
         # 나 자신의 발행일자에 현재 시작을 넣고(타임존 나우를 호출) 후 세이브 호출
         self.published_date = timezone.now()
-        self.save() # 모델 안에 정의되어 있는 메서드
+        self.save()  # 모델 안에 정의되어 있는 메서드
 
-    def __str__(self):  #객체를 문자열로 정의하고 싶을 때 사용
+    def __str__(self):  # 객체를 문자열로 정의하고 싶을 때 사용
         return self.title

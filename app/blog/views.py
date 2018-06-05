@@ -97,7 +97,6 @@ def post_list(request):
         # 데이터베이스 파일을 가지고 html파일을 동적으로 보내줘
     )
 
-
 def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     # post_detail.html 파일을 templates에 만들고,
@@ -107,8 +106,28 @@ def post_detail(request, post_id):
     context = {
         'post':post,
     }
-    #return HttpResponse(post_id)
+    # return HttpResponse(post_id)
 
     # 숙제: post_detail view function이 올바르게 동작하는 html을 작성해서 결과보기
 
     return render(request, 'blog/post_detail.html', context)
+
+def post_create(request):
+    # print(request.GET.get('title'))
+    if request.method == 'POST':
+        # request의 method값이 'POST'일 경우 (POST method로 요청이 왔을경우)
+        # request.POST에 있는 title, text값과
+        # request.user에 있는 USER인스턴스(로그인한 유저)속성을 사용해서
+        # 새 POST인스턴스를 생성
+        # HttpResponse를 사용해 새로 생성된 인스턴스의 id, title, text정보를 출력(string)
+
+        post = Post.objects.create(
+            author=request.user,
+            title=request.POST.get('title'),
+            text=request.POST.get('text')
+        )
+        return HttpResponse('id:{}, title:{}, text:{}'.format(post.id, post.title, post.text))
+    # post.author는 객체
+
+    else:
+        return render(request, 'blog/post_create.html')
