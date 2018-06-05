@@ -1,7 +1,7 @@
 import os
 
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.template.loader import render_to_string
@@ -80,7 +80,7 @@ def post_list(request):
     #     result += ' - {}<br>'.format(post)
     #
     # return HttpResponse(result)
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-id')
     context = {
         'posts': posts,
 
@@ -126,8 +126,14 @@ def post_create(request):
             title=request.POST.get('title'),
             text=request.POST.get('text')
         )
-        return HttpResponse('id:{}, title:{}, text:{}'.format(post.id, post.title, post.text))
-    # post.author는 객체
+        # return HttpResponse('id:{}, title:{}, text:{}'.format(post.id, post.title, post.text))
+        # post.author는 객체
+
+        # HTTP Redirection을 보낼 URL은 http://localhost:8000/ <- 도메인
+        # '/'은 가장 최 하단
+        # /로 시작하면, 절대경로, 절대경로의 시작은 도메인 :http://localhost:8000/
+        # return HttpResponseRedirect('/')
+        return redirect('post-list')
 
     else:
         return render(request, 'blog/post_create.html')
