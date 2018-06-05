@@ -114,6 +114,7 @@ def post_detail(request, post_id):
 
 def post_create(request):
     # print(request.GET.get('title'))
+
     if request.method == 'POST':
         # request의 method값이 'POST'일 경우 (POST method로 요청이 왔을경우)
         # request.POST에 있는 title, text값과
@@ -163,7 +164,13 @@ def post_delete(request, post_id):
 
     # 실제동작: post_list.html의 각 요소에 생성된 버튼을 클릭하면 이 함수가 실행되어야 함
     # breakpoint를 아래 리턴에 걸어놓은 후 request내의 내용을 확인
-    # if request.method == 'POST':
-    #     post = Post.objects.get(id=post_id)
-    #     post.delete()
+    if request.method == 'POST':
+        post = Post.objects.get(id=post_id)
+        post.delete()
+        return redirect('post-list')
     return HttpResponse('post_delete view function')
+
+def post_edit(request, post_id):
+    # request.method가 'POST' 일때 post_id에 해당하는 Post의 title과 text를 수정함
+    # 수정 완료 후 post-retail페이지로 이동
+    # method가 'GET'일때, post_id에 해당하는 Post의 title과 text가 이미 존재하는

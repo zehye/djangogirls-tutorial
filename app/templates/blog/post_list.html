@@ -16,6 +16,13 @@
             줄 바꿈이 있을 때마다 <br>태그를 알아서 넣어줘 -> |linebreaksbr
             100자까지만 보여줘 -> |truncatechars:100
             {% endcomment %}
+
+            <div>
+                <form action="{% url 'post-delete' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                </form>
+            </div>
         </div>
     </div>
     {% endfor %}
