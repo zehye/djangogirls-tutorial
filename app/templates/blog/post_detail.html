@@ -18,19 +18,14 @@
 <body>
     <div class="container">
         <h1 class="card mb-4">DjangoGirls Blog</h1>
-        {% for post in posts %}
+
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">[{{ post.id }}] {{ post.title }}</h5>
                 <h6 class="card-subtitle text-muted mb-3 text-right">published: {{ post.published_date }}</h6>
-                <p class="card-text">{{ post.text|linebreaksbr|truncatechars:100 }}</p>
-                {% comment %}
-                줄 바꿈이 있을 때마다 <br>태그를 알아서 넣어줘 -> |linebreaksbr
-                100자까지만 보여줘 -> |truncatechars:100
-                {% endcomment %}
+                <p class="card-text">{{ post.text|linebreaksbr }}</p>
             </div>
         </div>
-        {% endfor %}
     </div>
 </body>
 </html>

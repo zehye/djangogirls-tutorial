@@ -11,6 +11,11 @@ from .models import Post
 
 def post_list(request):
     """
+    데이터베이스에서 모든 자료들을 가지고 온다
+    :param request:
+    :return:
+    """
+    """
     first/
         first_file.txt
         second/
@@ -20,7 +25,7 @@ def post_list(request):
                 fourth/
                     fourth_file.txt
 
-    module.py에서
+    modele.py에서
     0. 현재 경로
         os.path.abspath(__file__)
     1. third/ 폴더의 경로
@@ -62,7 +67,7 @@ def post_list(request):
     # 위의 두 줄을 한번에 줄여쓰는 방법
     # return render(request, 'blog/post_list.html')
 
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
     # print(posts)
     # Post instance에서 title 속성에 접근가능
     # HttpResponse에
@@ -89,15 +94,21 @@ def post_list(request):
         request=request,
         template_name='blog/post_list.html',
         context=context
+        # 데이터베이스 파일을 가지고 html파일을 동적으로 보내줘
     )
 
 
 def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
+    # post_detail.html 파일을 templates에 만들고,
+    # post_list가 됐던 이유는 posts를 for문으로 돌고 있고, context에서 posts를 받고 있기 때문이다
+    # 그런 의미로 post_detail에서 for문을 삭제하고 100자로 줄였던 문자를 삭제함으로써 각각의 post_id에 따라
+    # 페이지에 해당 파일이 들어갈 수 있도록 했다.
     context = {
-        'post':post
+        'post':post,
     }
-    # return HttpResponse(post_id)
+    #return HttpResponse(post_id)
 
     # 숙제: post_detail view function이 올바르게 동작하는 html을 작성해서 결과보기
+
     return render(request, 'blog/post_detail.html', context)
